@@ -15,7 +15,7 @@ router.post('/',(req,res,next)=>
       });
 });
 
-router.post('/:orderId',(req,res,next)=>
+router.put('/:orderId',(req,res,next)=>
 {
       res.status(201).json({
           message : "orders details",
