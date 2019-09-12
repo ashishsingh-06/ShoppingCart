@@ -4,9 +4,16 @@ const Product = require('../../models/product');
 
 router.get('/', (req,res,next)=>
 {
-    res.status(200).json({
-      message : "handling GET request"
+    Product.find().exec().then(data=>{
+
+      res.status(200).json({
+        data : data
+      });
+
+    }).catch(err=>{
+        err : err
     });
+
 });
 
 
@@ -36,9 +43,14 @@ router.post('/', (req,res,next)=>
 router.get('/:productId',(req,res,next)=>
 {
       const id = req.params.productId;
-      res.status(200).json({
-        productId : id
+      Product.findById(id).exec().then(doc=>{
+
+        res.send(doc);
+
+      }).catch(err => {
+        console.log(err);
       });
+
 });
 
 router.patch('/:productId',(req,res,next)=>
@@ -50,9 +62,16 @@ router.patch('/:productId',(req,res,next)=>
 
 router.delete('/:productId',(req,res,next)=>
 {
+    const id = req.params.productId;
+    Product.findByIdAndDelete(id).then(data=>{
       res.status(200).json({
-        message : "deleted product"
+        data : data,
+        message : "Data deleted Successfully"
       });
+    }).catch(err=>{
+        console.log(err);
+    });
+    
 });
 
 module.exports = router;
