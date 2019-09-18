@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect('mongodb://localhost/shoppingCart');
+mongoose.connect('mongodb://localhost/shoppingCart',{useNewUrlParser:true});
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
