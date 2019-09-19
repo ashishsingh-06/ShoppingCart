@@ -8,7 +8,6 @@ router.get('/', (req,res,next)=>
 
       if(docs.length>0)
       {
-
         const result = {
           products : docs.map(docs=>{
             return {
@@ -29,13 +28,12 @@ router.get('/', (req,res,next)=>
           total_products : docs.length
         });
     }
+
     else {
       res.status(200).json({
           message : "No products found"
       });
     }
-
-
 
     }).catch(err=>{
         res.status(500).json({
@@ -44,7 +42,6 @@ router.get('/', (req,res,next)=>
     });
 
 });
-
 
 router.post('/', (req,res,next)=>
 {
