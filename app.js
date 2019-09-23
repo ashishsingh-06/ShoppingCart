@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 mongoose.connect('mongodb://localhost/shoppingCart',{useNewUrlParser:true});
 mongoose.Promise = global.Promise;
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 
 app.use('/products',productRoutes);
 app.use('/orders',orderRoutes);
+app.use('/user',userRoutes);
 
 app.use((req,res,next)=>
 {
@@ -50,5 +52,6 @@ app.use((error,req,res,next)=>
 
       });
 });
+
 
 module.exports = app;
